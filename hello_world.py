@@ -14,7 +14,7 @@ def lambda_handler(event, context):
 
 def on_launch(request, session):
     print("Session started")
-    return response({}, response_plain_text("I'm launching"))
+    return response({}, response_plain_text("kk, I'm woke"))
 
 def on_intent(request, session):
     intent = Intent(request, session)
@@ -66,7 +66,7 @@ class Intent():
         return self.request['intent']['name']
 
     def stop(self):
-        return response({}, response_plain_text("Oh, hasthag finally", True))
+        return response({}, response_plain_text("Oh, hashtag finally", True))
 
     def cancel(self):
         return self.stop()
