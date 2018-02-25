@@ -3,11 +3,11 @@
 def lambda_handler(event, context):
     """ App entry point  """
     if event['request']['type'] == "LaunchRequest":
-	return on_launch(event['request'], event['session'])
+        return on_launch(event['request'], event['session'])
     elif event['request']['type'] == "IntentRequest":
-	return on_intent(event['request'], event['session'])
+        return on_intent(event['request'], event['session'])
     elif event['request']['type'] == "SessionEndedRequest":
-	return on_session_ended()
+        return on_session_ended()
 
 
 # ----- Response handlers -----
@@ -20,20 +20,20 @@ def on_intent(request, session):
     intent = Intent(request, session)
     #intent = request['intent']
     if intent.name == 'testIntent':
-	return response({}, response_plain_text("You successfully tested"
-	    + " the functionality!"))
+        return response({}, response_plain_text("You successfully tested"
+            + " the functionality!"))
     elif intent.name == 'AMAZON.StopIntent':
-	return intent.stop()
+        return intent.stop()
     elif intent.name == 'AMAZON.CancelIntent':
-	return intent.cancel()
+        return intent.cancel()
     elif intent.name in ['AMAZON.SearchAction<object@WeatherForecast>',
-	    'AMAZON.SearchAction<object@WeatherForecast|temperature>', 
-	    'AMAZON.SearchAction<object@WeatherForecast|weatherCondition>']:
-	return intent.weatherForcast()
+            'AMAZON.SearchAction<object@WeatherForecast|temperature>', 
+            'AMAZON.SearchAction<object@WeatherForecast|weatherCondition>']:
+        return intent.weatherForcast()
     elif intent.name == 'AMAZON.HelpIntent':
-	return intent.help()
+        return intent.help()
     else:
-	return response({}, response_plain_text("Did you really woke me up for this?"))
+        return response({}, response_plain_text("Did you really woke me up for this?"))
 
 # We can't send a response back on a session end
 def on_session_ended(request, session):
@@ -41,41 +41,41 @@ def on_session_ended(request, session):
 
 def response_plain_text(output, endSession = False):
     return {
-	    'outputSpeech': {
-		'type': 'PlainText',
-		'text': output
-		},
-	    'shouldEndSession': endSession
-	    }
+            'outputSpeech': {
+                'type': 'PlainText',
+                'text': output
+                },
+            'shouldEndSession': endSession
+            }
 
-    def response(attributes, response_obj):
-	return {
-		'version': '1.0',
-		'sessionAttributes': attributes,
-		'response': response_obj
-		}
+def response(attributes, response_obj):
+    return {
+            'version': '1.0',
+            'sessionAttributes': attributes,
+            'response': response_obj
+            }
 
-	# Oh swag money, you're actually playing a cool song
+        # Oh swag money, you're actually playing a cool song
 class Intent():
     def __init__(self, request, session):
-	self.request = request
-	self.session = session
+        self.request = request
+        self.session = session
 
     @property
     def name(self):
-	return self.request['intent']['name']
+        return self.request['intent']['name']
 
     def stop(self):
-	return response({}, response_plain_text("Oh, hashtag finally", True))
+        return response({}, response_plain_text("Oh, hashtag finally", True))
 
     def cancel(self):
-	return self.stop()
+        return self.stop()
 
     def weatherForcast(self):
-	return response({}, response_plain_text("The night is dark and full of terror"))
+        return response({}, response_plain_text("The night is dark and full of terror"))
 
     def help(self):
-	return response({}, response_plain_text("Fine, what do you want?", True))
+        return response({}, response_plain_text("Fine, what do you want?", True))
 
 
 # test
