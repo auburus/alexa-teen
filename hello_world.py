@@ -20,8 +20,7 @@ def on_launch(request, session):
     return response({}, response_plain_text("kk, I'm woke"))
 
 def on_intent(request, session):
-    print("DEBUG[on_intent]:")
-    print(request)
+    print("Intent recived")
     intent = Intent(request, session)
 
     if intent.name == 'testIntent':
@@ -45,6 +44,7 @@ def on_intent(request, session):
 def on_session_ended(request, session):
     print("Session ended")
 
+
 def response_plain_text(output, endSession = False):
     return {
             'outputSpeech': {
@@ -62,19 +62,10 @@ def response_ssml_text(output, endSession = False):
                 },
             'shouldEndSession': endSession
             }
-			
+                        
 def ssml_whisper_tag(output):
     return "<amazon:effect name=\"whispered\">" + output +"</amazon:effect>"
-	
-def response_ssml_text(output, endSession = False):
-    return {
-            'outputSpeech': {
-                'type': 'SSML',
-                'ssml': ssml_whisper_tag(output)
-                },
-            'shouldEndSession': endSession
-            }
-
+        
 def response(attributes, response_obj):
     return {
             'version': '1.0',
