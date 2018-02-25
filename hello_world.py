@@ -25,7 +25,7 @@ def on_intent(request, session):
     intent = Intent(request, session)
 
     if intent.name == 'testIntent':
-        return response({}, response_plain_text("You successfully tested" + " the functionality!"))
+        return response({}, response_ssml_text("<amazon:effect name=\"whispered\">You successfully tested the functionality!</amazon:effect>"))
     elif intent.name == 'AMAZON.StopIntent':
         return intent.stop()
     elif intent.name == 'AMAZON.CancelIntent':
@@ -50,6 +50,15 @@ def response_plain_text(output, endSession = False):
             'outputSpeech': {
                 'type': 'PlainText',
                 'text': output
+                },
+            'shouldEndSession': endSession
+            }
+			
+def response_ssml_text(output, endSession = False):
+    return {
+            'outputSpeech': {
+                'type': 'SSML',
+                'ssml': "<speak>" + output +"</speak>"
                 },
             'shouldEndSession': endSession
             }
