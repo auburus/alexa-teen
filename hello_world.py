@@ -26,7 +26,9 @@ def on_intent(request, session):
         return intent.stop()
     elif intent.name == 'AMAZON.CancelIntent':
         return intent.cancel()
-    elif intent.name == 'AMAZON.SearchAction<object@WeatherForecast>':
+    elif intent.name in ['AMAZON.SearchAction<object@WeatherForecast>',
+		'AMAZON.SearchAction<object@WeatherForecast|temperature>', 
+		'AMAZON.SearchAction<object@WeatherForecast|weatherCondition>']:
         return intent.weatherForcast()
     else:
         return response({}, response_plain_text("This is an intent"))
