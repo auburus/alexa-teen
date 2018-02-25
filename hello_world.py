@@ -25,7 +25,7 @@ def on_intent(request, session):
     intent = Intent(request, session)
 
     if intent.name == 'testIntent':
-        return response({}, response_ssml_whisper_text("You successfully tested the functionality!"))
+        return response({}, response_ssml_text("You successfully tested the" + ssml_whisper_tag("functionality!")))
     elif intent.name == 'AMAZON.StopIntent':
         return intent.stop()
     elif intent.name == 'AMAZON.CancelIntent':
@@ -63,10 +63,10 @@ def response_ssml_text(output, endSession = False):
             'shouldEndSession': endSession
             }
 			
-def ssml_whisper_tag(output)
+def ssml_whisper_tag(output):
     return "<speak><amazon:effect name=\"whispered\">" + output +"</amazon:effect></speak>"
 	
-def response_ssml_whisper_text(output, endSession = False):
+def response_ssml_text(output, endSession = False):
     return {
             'outputSpeech': {
                 'type': 'SSML',
