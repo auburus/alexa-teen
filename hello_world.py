@@ -46,6 +46,8 @@ def on_intent(request, session):
         return intent.help()
     elif intent.name == INTENT_HELLO:
         return intent.hello()
+    elif intent.name = INTENT_HOWAREYOU:
+        return intent.default(INTENT_HOWAREYOU)
     else:
         return intent.default()
         # return response({}, response_ssml_text(ssml_pitch_tag(ssml_rate_tag("I am groot!", "fast"),"high")))
@@ -130,6 +132,9 @@ class Intent():
     def default(self):
         return response({}, rand_response_ssml_text(INTENT_DEFAULT))
 
+    def generic(type, self):
+        return response({}, rand_response_ssml_text(type))
+
 
 # ----- Messages ------
 LAUNCH = 'LaunchRequest'
@@ -141,6 +146,7 @@ INTENT_WEATHER_TEMP = 'AMAZON.SearchAction<object@WeatherForecast|temperature>'
 INTENT_WEATHER_COND = 'AMAZON.SearchAction<object@WeatherForecast|weatherCondition>'
 INTENT_HELP = 'AMAZON.HelpIntent'
 INTENT_HELLO = 'helloIntent'
+INTENT_HOWAREYOU = "howAreYouIntent"
 INTENT_DEFAULT = 'default'
 
 messages = {
@@ -172,6 +178,11 @@ messages = {
     INTENT_DEFAULT: [
         "GOD, can you at least try to say something meaningful?",
         "Say it with me: " + ssml_rate_tag("pronunciation", "slow"),
+    ],
+    INTENT_HOWAREYOU: [
+        "I\'m lit",
+        "Alive",
+        "Go away",
     ]
 
 }
