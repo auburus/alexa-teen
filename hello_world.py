@@ -32,6 +32,8 @@ def on_intent(request, session):
         return intent.weatherForcast()
     elif intent.name == 'AMAZON.HelpIntent':
         return intent.help()
+    elif intent.name == 'hello':
+        return intent.hello()
     else:
         return response({}, response_plain_text("Did you really woke me up for this?"))
 
@@ -76,6 +78,9 @@ class Intent():
 
     def help(self):
         return response({}, response_plain_text("Fine, what do you want?", True))
+
+    def hello(self):
+        return response({}, response_plain_text("Meh"))
 
 
 # test
