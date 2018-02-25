@@ -67,6 +67,7 @@ class Intent():
     def name(self):
         return self.request['intent']['name']
 
+
     def stop(self):
         return response({}, response_plain_text("Oh, hashtag finally", True))
 
@@ -80,6 +81,10 @@ class Intent():
         return response({}, response_plain_text("Fine, what do you want?", True))
 
     def hello(self):
+        print("DEBUG: Hello request")
+        print("DEBUG", self.request)
+        print("DEBUG: Hello response")
+        print("DEBUG", response({}, response_plain_text("Meh")))
         return response({}, response_plain_text("Meh"))
 
 
