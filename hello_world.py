@@ -110,7 +110,7 @@ class Intent():
         return self.stop()
 
     def weatherForcast(self):
-        return response({}, response_plain_text(ssml_whisper_tag("The night is dark and full of terrors")))
+        return response({}, response_ssml_text(ssml_whisper_tag("The night is dark and full of terrors")))
 
     def help(self):
         return response({}, response_plain_text("Fine, what do you want?", False))
