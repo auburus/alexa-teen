@@ -19,12 +19,12 @@ def lambda_handler(event, context):
 # ----- Messages ------
 LAUNCH = 'LaunchRequest'
 INTENT_TEST = 'testIntent'
-INTENT_STOP = 'Amazon.StopIntent'
-INTENT_CANCEL = 'Amazon.CancelIntent'
+INTENT_STOP = 'AMAZON.StopIntent'
+INTENT_CANCEL = 'AMAZON.CancelIntent'
 INTENT_WEATHER = 'AMAZON.SearchAction<object@WeatherForecast>'
 INTENT_WEATHER_TEMP = 'AMAZON.SearchAction<object@WeatherForecast|temperature>'
 INTENT_WEATHER_COND = 'AMAZON.SearchAction<object@WeatherForecast|weatherCondition>'
-INTENT_HELP = 'Amazon.HelpIntent'
+INTENT_HELP = 'AMAZON.HelpIntent'
 INTENT_HELLO = 'helloIntent'
 
 messages = {
