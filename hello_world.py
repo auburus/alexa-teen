@@ -8,7 +8,7 @@ def lambda_handler(event, context):
         return on_intent(event['request'], event['session'])
     elif event['request']['type'] == "SessionEndedRequest":
         return on_session_ended(event['request'], event['session'])
-    else
+    else:
         print("BUG: request type wrong")
         print(event['request'])
 
