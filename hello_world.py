@@ -1,5 +1,8 @@
 # documentation
 # [here](https://developer.amazon.com/docs/custom-skills/request-and-response-json-reference.html)
+
+
+# ----- Entry point -----
 def lambda_handler(event, context):
     """ App entry point  """
     if event['request']['type'] == "LaunchRequest":
@@ -11,6 +14,18 @@ def lambda_handler(event, context):
     else:
         print("BUG: request type wrong")
         print(event['request'])
+
+# ----- Messages ------
+INTENT_TEST = 'testIntent'
+INTENT_STOP = 'Amazon.StopIntent'
+INTENT_CANCEL = 'Amazon.CancelIntent'
+INTENT_WEATHER = 'AMAZON.SearchAction<object@WeatherForecast>'
+INTENT_WEATHER_TEMP = 'AMAZON.SearchAction<object@WeatherForecast|temperature>'
+INTENT_WEATHER_COND = 'AMAZON.SearchAction<object@WeatherForecast|weatherCondition>'
+INTENT_HELP = 'Amazon.HelpIntent'
+INTENT_HELLO = 'hello'
+
+messages = {}
 
 
 # ----- Response handlers -----
@@ -25,7 +40,7 @@ def on_intent(request, session):
 
     if intent.name == 'testIntent':
         return response({}, response_ssml_text("You successfully " 
-		+ ssml_explitive_tag("tested") + " the " + ssml_whisper_tag("functionality!")))
+            + ssml_explitive_tag("tested") + " the " + ssml_whisper_tag("functionality!")))
 
     elif intent.name == 'AMAZON.StopIntent':
         return intent.stop()
