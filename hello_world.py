@@ -17,8 +17,12 @@ def on_launch(request, session):
     return response({}, response_plain_text("I'm launching"))
 
 def on_intent(request, session):
-    print("Indent requested")
-    return response({}, response_plain_text("This is an intent"))
+    intent = request['intent']
+    if intent['name'] == 'testIntent':
+        return response({}, response_plain_text("You successfully tested"
+            + " the functionality!"))
+    else:
+        return response({}, response_plain_text("This is an intent"))
 
 # We can't send a response back on a session end
 def on_session_ended(request, session):
