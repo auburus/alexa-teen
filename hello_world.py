@@ -46,7 +46,7 @@ def on_intent(request, session):
         return intent.help()
     elif intent.name == INTENT_HELLO:
         return intent.hello()
-    elif intent.name = INTENT_HOWAREYOU:
+    elif intent.name == INTENT_HOWAREYOU:
         return intent.default(INTENT_HOWAREYOU)
     else:
         return intent.default()
