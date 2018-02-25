@@ -156,8 +156,9 @@ messages = {
         ssml_rate_tag('What the ' +ssml_explitive_tag('fuck ') +'do you want now?', 'fast'),
     ],
     INTENT_WEATHER: [
-        'As if you really need to know that',
-        'Do I look like I know everything?',
+        ssml_whisper_tag('As if you really need to fucking know that'),
+        ssml_emphasis_tag('Do I look like I know fucking everything?'),
+        ssml_rate_tag(ssml_pitch_tag('The night is fucking dark and full of terrors','low'), 'slow'),
     ]
 }
 
