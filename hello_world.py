@@ -73,7 +73,7 @@ def on_intent(request, session):
     elif intent.name == INTENT_HELLO:
         return intent.hello()
     else:
-        return response({}, response_plain_text("I am groot!"))
+        return response({}, response_ssml_text(ssml_rate_tag("I am groot!"), "fast"))
 
 # We can't send a response back on a session end
 def on_session_ended(request, session):
@@ -144,7 +144,7 @@ class Intent():
         return response({}, response_ssml_text(ssml_whisper_tag("The night is dark and full of terrors")))
 
     def help(self):
-        return response({}, response_plain_text("Fine, what do you want?", False))
+        return response({}, response_ssml_text(ssml_emphasis_tag("Fine") +",    " +ssml_pitch_tag("what do you want?", "low")))
 
     def hello(self):
         return response({}, rand_response_plain_text(INTENT_HELLO))
