@@ -156,9 +156,9 @@ messages = {
         'It\'s ' +ssml_emphasis_tag('my') +' life, ' +ssml_rate_tag(' I\'ll stop if I want to', 'slow'),
     ],
     INTENT_HELLO: [
-        ssml_pitch_tag('What\'s up?', 'high'),
-        ssml_pitch_tag('Hey', 'low'),
-        ssml_rate_tag('What the ' +ssml_explitive_tag('fuck ') +'do you want now?', 'fast'),
+        ssml_rate_tag('What\'s up fam?', 'slow'),
+        ssml_pitch_tag('Hey squad', 'low'),
+        ssml_rate_tag('Bruh, what the ' +ssml_explitive_tag('fuck ') +'do you want now?', 'fast'),
     ],
     INTENT_WEATHER: [
         ssml_rate_tag('As if you ' +ssml_rate_tag('really', 'slow') +' need to know that', 'fast'),
@@ -167,11 +167,12 @@ messages = {
 
     ],
     INTENT_HELP: [
-        "Do you really want my help\n",
+        ssml_pitch_tag('Ugh, fine', 'low'),
+        ssml_rate_tag('Do you really want my help\n', 'fast'),
     ],
     INTENT_DEFAULT: [
-        "GOD, can you at least try to say something meaningful?",
-        "Say it with me: " + ssml_rate_tag("pronunciation", "slow"),
+        ssml_emphasis_tag('GOD') +', can you at least try to say something meaningful?',
+        'I\'m weak. ' +ssml_rate_tag("Say it with me: ", 'fast') + ssml_rate_tag("pronunciation", "slow"),
     ]
 
 }
