@@ -48,12 +48,12 @@ def response_plain_text(output, endSession = False):
             'shouldEndSession': endSession
             }
 
-    def response(attributes, response_obj):
-        return {
-                'version': '1.0',
-                'sessionAttributes': attributes,
-                'response': response_obj
-                }
+def response(attributes, response_obj):
+    return {
+            'version': '1.0',
+            'sessionAttributes': attributes,
+            'response': response_obj
+            }
 
         # Oh swag money, you're actually playing a cool song
 class Intent():
