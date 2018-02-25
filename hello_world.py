@@ -30,8 +30,10 @@ def on_intent(request, session):
 		'AMAZON.SearchAction<object@WeatherForecast|temperature>', 
 		'AMAZON.SearchAction<object@WeatherForecast|weatherCondition>']:
         return intent.weatherForcast()
+    elif intent.name == 'AMAZON.HelpIntent':
+        return intent.help()
     else:
-        return response({}, response_plain_text("This is an intent"))
+        return response({}, response_plain_text("Did you really woke me up for this?"))
 
 # We can't send a response back on a session end
 def on_session_ended(request, session):
@@ -72,9 +74,18 @@ class Intent():
     def weatherForcast(self):
         return response({}, response_plain_text("The night is dark and full of terror"))
 
+    def help(self):
+        return response({}, response_plain_text("Fine, what do you want?", True))
+
 
 # test
 if __name__ == "__main__":
+    import sys
+
+    intent_name = "AMAZON.CancelIntent"
+    if len(sys.argv) >= 2:
+        intent_name = sys.argv[1]
+
     event = {
         "version": "1.0",
         "session": {
@@ -102,7 +113,7 @@ if __name__ == "__main__":
             "dialogState": "string",
             "locale": "string",
             "intent": {
-                "name": "AMAZON.CancelIntent",
+                "name": intent_name,
                 "confirmationStatus": "string",
                 "slots": {
                     "SlotName": {
