@@ -58,13 +58,13 @@ def response_ssml_text(output, endSession = False):
     return {
             'outputSpeech': {
                 'type': 'SSML',
-                'ssml': "<speak><amazon:effect name=\"whispered\">" + output +"</amazon:effect></speak>"
+                'ssml': "<speak>" + output +"</speak>"
                 },
             'shouldEndSession': endSession
             }
 			
 def ssml_whisper_tag(output):
-    return "<speak><amazon:effect name=\"whispered\">" + output +"</amazon:effect></speak>"
+    return "<amazon:effect name=\"whispered\">" + output +"</amazon:effect>"
 	
 def response_ssml_text(output, endSession = False):
     return {
