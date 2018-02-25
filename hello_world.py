@@ -83,7 +83,7 @@ def ssml_pitch_tag(output, pitch):
     return "<prosody pitch=\"" + pitch + "\">" + output +"</prosody>"
 
 def ssml_rate_tag(output, rate):
-    return "<prosody pitch=\"" + rate + "\">" + output +"</prosody>"
+    return "<prosody rate=\"" + rate + "\">" + output +"</prosody>"
 	
 def response(attributes, response_obj):
     return {
