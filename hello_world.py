@@ -31,8 +31,13 @@ messages = {
     LAUNCH: [
         'kk, I\'m woke',
         'Ugh, what?',
-        'What do you want now?'
-    ]
+        'I really hope you have a good reason to bother me',
+    ],
+    INTENT_HELLO: [
+        'What\'s up?',
+        'Hey',
+        'What do you want now?',
+    ],
 }
 
 
@@ -65,7 +70,7 @@ def on_intent(request, session):
         return intent.weatherForcast()
     elif intent.name == 'AMAZON.HelpIntent':
         return intent.help()
-    elif intent.name == 'hello':
+    elif intent.name == INTENT_HELLO:
         return intent.hello()
     else:
         return response({}, response_plain_text("I am groot!"))
@@ -142,11 +147,7 @@ class Intent():
         return response({}, response_plain_text("Fine, what do you want?", False))
 
     def hello(self):
-        print("DEBUG: Hello request")
-        print("DEBUG", self.request)
-        print("DEBUG: Hello response")
-        print("DEBUG", response({}, response_plain_text("Mehh")))
-        return response({}, response_plain_text("Mehh"))
+        return response({}, rand_response_plain_text(INTENT_HELLO))
 
 
 # test
@@ -178,8 +179,7 @@ if __name__ == "__main__":
         },
         "context": {},
         "request": {
-            #"type": "IntentRequest",
-            "type": "LaunchRequest",
+            "type": "IntentRequest",
             "requestId": "string",
             "timestamp": "string",
             "dialogState": "string",
