@@ -139,7 +139,7 @@ class Intent():
         return response({}, response_ssml_text(ssml_whisper_tag("The night is dark and full of terrors")))
 
     def help(self):
-        return response({}, response_plain_text("Fine, what do you want?", False))
+        return response({}, response_ssml_text(ssml_emphasis_tag("Fine") +",    " +ssml_pitch_tag("what do you want?", "low")))
 
     def hello(self):
         print("DEBUG: Hello request")
