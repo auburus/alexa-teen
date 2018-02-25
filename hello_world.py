@@ -1,5 +1,6 @@
 # documentation
 # [here](https://developer.amazon.com/docs/custom-skills/request-and-response-json-reference.html)
+import random
 
 
 # ----- Entry point -----
@@ -16,6 +17,7 @@ def lambda_handler(event, context):
         print(event['request'])
 
 # ----- Messages ------
+LAUNCH = 'LaunchRequest'
 INTENT_TEST = 'testIntent'
 INTENT_STOP = 'Amazon.StopIntent'
 INTENT_CANCEL = 'Amazon.CancelIntent'
@@ -25,14 +27,20 @@ INTENT_WEATHER_COND = 'AMAZON.SearchAction<object@WeatherForecast|weatherConditi
 INTENT_HELP = 'Amazon.HelpIntent'
 INTENT_HELLO = 'hello'
 
-messages = {}
+messages = {
+    LAUNCH: [
+        'kk, I\'m woke',
+        'Ugh, what?',
+        'What do you want now?'
+    ]
+}
 
 
 # ----- Response handlers -----
 
 def on_launch(request, session):
-    print("Session started")
-    return response({}, response_plain_text("kk, I'm woke"))
+    print("Launching")
+    return response({}, rand_response_plain_text(LAUNCH))
 
 def on_intent(request, session):
     print("Intent received")
@@ -61,6 +69,9 @@ def on_intent(request, session):
 def on_session_ended(request, session):
     print("Session ended")
 
+
+def rand_response_plain_text(type, endSession = False):
+    return response_plain_text(random.choice(messages[type]), endSession)
 
 def response_plain_text(output, endSession = False):
     return {
@@ -153,7 +164,8 @@ if __name__ == "__main__":
         },
         "context": {},
         "request": {
-            "type": "IntentRequest",
+            #"type": "IntentRequest",
+            "type": "LaunchRequest",
             "requestId": "string",
             "timestamp": "string",
             "dialogState": "string",
