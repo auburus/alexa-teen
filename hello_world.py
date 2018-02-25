@@ -38,11 +38,9 @@ def on_intent(request, session):
 
     elif intent.name == INTENT_STOP:
         return intent.stop()
-    elif intent.name == 'AMAZON.CancelIntent':
+    elif intent.name == INTENT_CANCEL:
         return intent.cancel()
-    elif intent.name in ['AMAZON.SearchAction<object@WeatherForecast>',
-            'AMAZON.SearchAction<object@WeatherForecast|temperature>', 
-            'AMAZON.SearchAction<object@WeatherForecast|weatherCondition>']:
+    elif intent.name in [INTENT_WEATHER, INTENT_WEATHER_TEMP, INTENT_WEATHER_COND]:
         return intent.weatherForcast()
     elif intent.name == 'AMAZON.HelpIntent':
         return intent.help()
@@ -121,6 +119,7 @@ class Intent():
 
     def weatherForcast(self):
         return response({}, response_ssml_text(ssml_whisper_tag("The night is dark and full of terrors")))
+        return response({}, rand_response_ssml_text(INTENT_WEATHER))
 
     def help(self):
         return response({}, response_ssml_text(ssml_emphasis_tag("Fine") +",    " +ssml_pitch_tag("what do you want?", "low")))
@@ -157,6 +156,10 @@ messages = {
         ssml_pitch_tag('Hey', 'low'),
         ssml_rate_tag('What the ' +ssml_explitive_tag('fuck ') +'do you want now?', 'fast'),
     ],
+    INTENT_WEATHER: [
+        'As if you really need to know that',
+        'Do I look like I know everything?',
+    ]
 }
 
 # test
