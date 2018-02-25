@@ -42,12 +42,13 @@ def on_intent(request, session):
         return intent.cancel()
     elif intent.name in [INTENT_WEATHER, INTENT_WEATHER_TEMP, INTENT_WEATHER_COND]:
         return intent.weatherForcast()
-    elif intent.name == 'AMAZON.HelpIntent':
+    elif intent.name == INTENT_HELP:
         return intent.help()
     elif intent.name == INTENT_HELLO:
         return intent.hello()
     else:
-        return response({}, response_ssml_text(ssml_pitch_tag(ssml_rate_tag("I am groot!", "fast"),"high")))
+        return intent.default()
+        # return response({}, response_ssml_text(ssml_pitch_tag(ssml_rate_tag("I am groot!", "fast"),"high")))
 
 # We can't send a response back on a session end
 def on_session_ended(request, session):
@@ -126,6 +127,9 @@ class Intent():
     def hello(self):
         return response({}, rand_response_ssml_text(INTENT_HELLO))
 
+    def default(self):
+        return response({}, rand_response_ssml_text(INTENT_DEFAULT))
+
 
 # ----- Messages ------
 LAUNCH = 'LaunchRequest'
@@ -137,6 +141,7 @@ INTENT_WEATHER_TEMP = 'AMAZON.SearchAction<object@WeatherForecast|temperature>'
 INTENT_WEATHER_COND = 'AMAZON.SearchAction<object@WeatherForecast|weatherCondition>'
 INTENT_HELP = 'AMAZON.HelpIntent'
 INTENT_HELLO = 'helloIntent'
+INTENT_DEFAULT = 'default'
 
 messages = {
     LAUNCH: [
@@ -159,7 +164,16 @@ messages = {
         ssml_rate_tag('As if you ' +ssml_rate_tag('really', 'slow') +' need to know that', 'fast'),
        'Do I look like I '  +ssml_emphasis_tag('really know') + '  every ' +ssml_explitive_tag('fucking') +' thing?',
         ssml_whisper_tag('The night is dark and full of ' +ssml_explitive_tag('fucking') +' terrors'),
+
+    ],
+    INTENT_HELP: [
+        "Do you really want my help\n",
+    ],
+    INTENT_DEFAULT: [
+        "GOD, can you at least try to say something meaningful?",
+        "Say it with me: " + ssml_rate_tag("pronunciation", "slow"),
     ]
+
 }
 
 # test
