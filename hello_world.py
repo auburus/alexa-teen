@@ -118,7 +118,6 @@ class Intent():
         return self.stop()
 
     def weatherForcast(self):
-        return response({}, response_ssml_text(ssml_whisper_tag("The night is dark and full of terrors")))
         return response({}, rand_response_ssml_text(INTENT_WEATHER))
 
     def help(self):
