@@ -26,6 +26,8 @@ def on_intent(request, session):
         return intent.stop()
     elif intent.name == 'AMAZON.CancelIntent':
         return intent.cancel()
+    elif intent.name == 'AMAZON.SearchAction<object@WeatherForecast>':
+        return intent.weatherForcast()
     else:
         return response({}, response_plain_text("This is an intent"))
 
@@ -64,6 +66,9 @@ class Intent():
 
     def cancel(self):
         return self.stop()
+        
+    def weatherForcast(self):
+        return response({}, response_plain_text("The night is dark and full of terror"))
 
 
 # test
