@@ -66,7 +66,7 @@ class Intent():
         return self.request['intent']['name']
 
     def stop(self):
-        return response({}, response_plain_text("Oh, hasthag finally", True))
+        return response({}, response_plain_text("Oh, hashtag finally", True))
 
     def cancel(self):
         return self.stop()
