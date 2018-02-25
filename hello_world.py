@@ -38,7 +38,8 @@ def on_intent(request, session):
     elif intent.name == INTENT_HELLO:
         return intent.hello()
     elif intent.name == INTENT_HOWAREYOU:
-        return intent.default(INTENT_HOWAREYOU)
+        return intent.howareyou()
+    #return intent.generic(INTENT_HOWAREYOU)
     else:
         return intent.default()
         # return response({}, response_ssml_text(ssml_pitch_tag(ssml_rate_tag("I am groot!", "fast"),"high")))
@@ -119,6 +120,9 @@ class Intent():
 
     def hello(self):
         return response({}, rand_response_ssml_text(INTENT_HELLO))
+
+    def howareyou(self):
+        return response({}, rand_response_ssml_text(INTENT_HOWAREYOU))
 
     def default(self):
         return response({}, rand_response_ssml_text(INTENT_DEFAULT))
