@@ -40,9 +40,9 @@ messages = {
         'It\'s my life, I\'ll stop if I want to',
     ],
     INTENT_HELLO: [
-        'What\'s up?',
-        'Hey',
-        'What do you want now?',
+        ssml_pitch_tag('What\'s up?', 'high'),
+        ssml_pitch_tag('Hey', 'low'),
+        ssml_rate_tag('What the ' +ssml_explitive_tag('fuck ') +'do you want now?', 'fast'),
     ],
 }
 
@@ -79,7 +79,7 @@ def on_intent(request, session):
     elif intent.name == INTENT_HELLO:
         return intent.hello()
     else:
-        return response({}, response_ssml_text(ssml_rate_tag("I am groot!", "fast")))
+        return response({}, response_ssml_text(ssml_pitch_tag(ssml_rate_tag("I am groot!", "fast"),"high")))
 
 # We can't send a response back on a session end
 def on_session_ended(request, session):
@@ -88,6 +88,9 @@ def on_session_ended(request, session):
 
 def rand_response_plain_text(type, endSession = False):
     return response_plain_text(random.choice(messages[type]), endSession)
+    
+def rand_response_ssml_text(type, endSession = False):
+    return response_ssml_text(random.choice(messages[type]), endSession)
 
 def response_plain_text(output, endSession = False):
     return {
@@ -153,7 +156,7 @@ class Intent():
         return response({}, response_ssml_text(ssml_emphasis_tag("Fine") +",    " +ssml_pitch_tag("what do you want?", "low")))
 
     def hello(self):
-        return response({}, rand_response_plain_text(INTENT_HELLO))
+        return response({}, rand_response_ssml_text(INTENT_HELLO))
 
 
 # test
