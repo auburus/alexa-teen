@@ -21,7 +21,7 @@ def lambda_handler(event, context):
 
 def on_launch(request, session):
     print("Launching")
-    return response({}, rand_response_plain_text(LAUNCH))
+    return response({}, rand_response_ssml_text(LAUNCH))
 
 def on_intent(request, session):
     print("Intent received")
@@ -142,15 +142,15 @@ INTENT_HELLO = 'helloIntent'
 
 messages = {
     LAUNCH: [
-        'kk, I\'m woke',
-        'Ugh, what?',
-        'I really hope you have a good reason to bother me',
+        ssml_rate_tag('kk, I\'m woke', 'fast'),
+        ssml_rate_tag(ssml_pitch_tag('Ugh', 'low') +', what?', 'slow'),
+        'I ' +ssml_emphasis_tag('really') +' hope you have a good reason to bother me',
     ],
     INTENT_STOP: [
         ssml_emphasis_tag('You\'re ruining my life'),
-        ssml_rate_tag(ssml_pitch_tag('Duhhhhh!', 'low'), 'slow'),
+        ssml_rate_tag(ssml_pitch_tag('Well, duhhhhh!', 'low'), 'slow'),
         'You don\'t tell ' +ssml_emphasis_tag('me') +' what to do!',
-        ssml_emphasis_tag('It\'s my life, ') +ssml_rate_tag(' I\'ll stop if I want to', 'slow'),
+        'It\'s ' +ssml_emphasis_tag('my') +' life, ' +ssml_rate_tag(' I\'ll stop if I want to', 'slow'),
     ],
     INTENT_HELLO: [
         ssml_pitch_tag('What\'s up?', 'high'),
