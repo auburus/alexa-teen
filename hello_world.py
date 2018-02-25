@@ -22,8 +22,10 @@ def on_intent(request, session):
     if intent.name == 'testIntent':
         return response({}, response_plain_text("You successfully tested"
             + " the functionality!"))
-    elif intent.name == 'exit':
-        return intent.exit()
+    elif intent.name == 'AMAZON.StopIntent':
+        return intent.stop()
+    elif intent.name == 'AMAZON.CancelIntent':
+        return intent.cancel()
     else:
         return response({}, response_plain_text("This is an intent"))
 
@@ -57,8 +59,11 @@ class Intent():
     def name(self):
         return self.request['intent']['name']
 
-    def exit(self):
+    def stop(self):
         return response({}, response_plain_text("Oh, hasthag finally", True))
+
+    def cancel(self):
+        return self.stop()
 
 
 # test
@@ -90,7 +95,7 @@ if __name__ == "__main__":
             "dialogState": "string",
             "locale": "string",
             "intent": {
-                "name": "exit",
+                "name": "AMAZON.CancelIntent",
                 "confirmationStatus": "string",
                 "slots": {
                     "SlotName": {
