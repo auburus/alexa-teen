@@ -20,11 +20,12 @@ def on_launch(request, session):
     return response({}, response_plain_text("kk, I'm woke"))
 
 def on_intent(request, session):
-    print("Intent recived")
+    print("Intent received")
     intent = Intent(request, session)
 
     if intent.name == 'testIntent':
         return response({}, response_ssml_text("You successfully tested the " + ssml_whisper_tag("functionality!")))
+
     elif intent.name == 'AMAZON.StopIntent':
         return intent.stop()
     elif intent.name == 'AMAZON.CancelIntent':
