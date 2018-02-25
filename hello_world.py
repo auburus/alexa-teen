@@ -24,7 +24,8 @@ def on_intent(request, session):
     intent = Intent(request, session)
 
     if intent.name == 'testIntent':
-        return response({}, response_ssml_text("You successfully tested the " + ssml_whisper_tag("functionality!")))
+        return response({}, response_ssml_text("You successfully " 
+		+ ssml_explitive_tag("tested") + " the " + ssml_whisper_tag("functionality!")))
 
     elif intent.name == 'AMAZON.StopIntent':
         return intent.stop()
@@ -66,6 +67,9 @@ def response_ssml_text(output, endSession = False):
                         
 def ssml_whisper_tag(output):
     return "<amazon:effect name=\"whispered\">" + output +"</amazon:effect>"
+        
+def ssml_explitive_tag(output):
+    return "<say-as interpret-as=\"expletive\">" + output +"</say-as>"
         
 def response(attributes, response_obj):
     return {
