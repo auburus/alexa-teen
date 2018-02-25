@@ -24,8 +24,13 @@ def on_intent(request, session):
     intent = Intent(request, session)
 
     if intent.name == 'testIntent':
-        return response({}, response_ssml_text("You successfully " 
-		+ ssml_explitive_tag("tested") + " the " + ssml_whisper_tag("functionality!")))
+        return response({}, 
+		    response_ssml_text("You " +ssml_emphasis_tag("successfully") 
+		    + ssml_explitive_tag("tested") + " the " + ssml_whisper_tag("functionality!")
+		    + ssml_pitch(" this is a low pitch ", "low")
+			+ ssml_rate(" now I'm talking soooo slow ", "slow")
+			)
+		)
 
     elif intent.name == 'AMAZON.StopIntent':
         return intent.stop()
@@ -70,7 +75,16 @@ def ssml_whisper_tag(output):
         
 def ssml_explitive_tag(output):
     return "<say-as interpret-as=\"expletive\">" + output +"</say-as>"
-        
+	
+def ssml_emphasis_tag(output):
+    return "<emphasis level=\"strong\"> + output +"</emphasis>"
+
+def ssml_pitch_tag(output, pitch):
+    return "<prosody pitch=\"" + pitch + "\">" + output +"</prosody>"
+
+def ssml_rate_tag(output, rate):
+    return "<prosody pitch=\"" + rate + "\">" + output +"</prosody>"
+	
 def response(attributes, response_obj):
     return {
             'version': '1.0',
