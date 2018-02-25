@@ -68,6 +68,12 @@ class Intent():
 
 # test
 if __name__ == "__main__":
+    import sys
+
+    intent_name = "AMAZON.CancelIntent"
+    if len(sys.argv) >= 2:
+        intent_name = sys.argv[1]
+
     event = {
         "version": "1.0",
         "session": {
@@ -95,7 +101,7 @@ if __name__ == "__main__":
             "dialogState": "string",
             "locale": "string",
             "intent": {
-                "name": "AMAZON.CancelIntent",
+                "name": intent_name,
                 "confirmationStatus": "string",
                 "slots": {
                     "SlotName": {
