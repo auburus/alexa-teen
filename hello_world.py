@@ -88,8 +88,8 @@ class Intent():
         print("DEBUG: Hello request")
         print("DEBUG", self.request)
         print("DEBUG: Hello response")
-        print("DEBUG", response({}, response_plain_text("Meh")))
-        return response({}, response_plain_text("Meh"))
+        print("DEBUG", response({}, response_plain_text("Mehh")))
+        return response({}, response_plain_text("Mehh"))
 
 
 # test
