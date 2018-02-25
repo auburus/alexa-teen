@@ -25,7 +25,7 @@ INTENT_WEATHER = 'AMAZON.SearchAction<object@WeatherForecast>'
 INTENT_WEATHER_TEMP = 'AMAZON.SearchAction<object@WeatherForecast|temperature>'
 INTENT_WEATHER_COND = 'AMAZON.SearchAction<object@WeatherForecast|weatherCondition>'
 INTENT_HELP = 'Amazon.HelpIntent'
-INTENT_HELLO = 'hello'
+INTENT_HELLO = 'helloIntent'
 
 messages = {
     LAUNCH: [
