@@ -24,7 +24,7 @@ def on_intent(request, session):
     intent = Intent(request, session)
 
     if intent.name == 'testIntent':
-        return response({}, response_ssml_text("You successfully tested the" + ssml_whisper_tag("functionality!")))
+        return response({}, response_ssml_text("You successfully tested the" + ssml_whisper_tag(" functionality!")))
     elif intent.name == 'AMAZON.StopIntent':
         return intent.stop()
     elif intent.name == 'AMAZON.CancelIntent':
