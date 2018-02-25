@@ -25,13 +25,19 @@ INTENT_WEATHER = 'AMAZON.SearchAction<object@WeatherForecast>'
 INTENT_WEATHER_TEMP = 'AMAZON.SearchAction<object@WeatherForecast|temperature>'
 INTENT_WEATHER_COND = 'AMAZON.SearchAction<object@WeatherForecast|weatherCondition>'
 INTENT_HELP = 'Amazon.HelpIntent'
-INTENT_HELLO = 'hello'
+INTENT_HELLO = 'helloIntent'
 
 messages = {
     LAUNCH: [
         'kk, I\'m woke',
         'Ugh, what?',
         'I really hope you have a good reason to bother me',
+    ],
+    INTENT_STOP: [
+        'You\'re ruining my life',
+        'Duh!',
+        'You don\'t tell me what to do!',
+        'It\'s my life, I\'ll stop if I want to',
     ],
     INTENT_HELLO: [
         ssml_pitch_tag('What\'s up?', 'high'),
@@ -60,7 +66,7 @@ def on_intent(request, session):
             )
         )
 
-    elif intent.name == 'AMAZON.StopIntent':
+    elif intent.name == INTENT_STOP:
         return intent.stop()
     elif intent.name == 'AMAZON.CancelIntent':
         return intent.cancel()
@@ -138,7 +144,7 @@ class Intent():
 
 
     def stop(self):
-        return response({}, response_plain_text("Oh, hashtag finally", True))
+        return response({}, rand_response_plain_text(INTENT_STOP, True))
 
     def cancel(self):
         return self.stop()
