@@ -7,7 +7,10 @@ def lambda_handler(event, context):
     elif event['request']['type'] == "IntentRequest":
         return on_intent(event['request'], event['session'])
     elif event['request']['type'] == "SessionEndedRequest":
-        return on_session_ended()
+        return on_session_ended(event['request'], event['session'])
+    else
+        print("BUG: request type wrong")
+        print(event['request'])
 
 
 # ----- Response handlers -----
@@ -17,13 +20,12 @@ def on_launch(request, session):
     return response({}, response_plain_text("kk, I'm woke"))
 
 def on_intent(request, session):
-    intent = Intent(request, session)
-    print("DEBUG:")
+    print("DEBUG[on_intent]:")
     print(request)
-    #intent = request['intent']
+    intent = Intent(request, session)
+
     if intent.name == 'testIntent':
-        return response({}, response_plain_text("You successfully tested"
-            + " the functionality!"))
+        return response({}, response_plain_text("You successfully tested" + " the functionality!"))
     elif intent.name == 'AMAZON.StopIntent':
         return intent.stop()
     elif intent.name == 'AMAZON.CancelIntent':
