@@ -172,9 +172,9 @@ messages = {
         'I\'m weak. ' +ssml_rate_tag("Say it with me: ", 'fast') + ssml_rate_tag("pronunciation", "slow"),
     ],
     INTENT_HOWAREYOU: [
-        "I\'m lit",
+        "Salty and lit",
         "Alive",
-        "Go away",
+        "Skurt you",
     ]
 
 }
