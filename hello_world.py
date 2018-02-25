@@ -18,6 +18,8 @@ def on_launch(request, session):
 
 def on_intent(request, session):
     intent = Intent(request, session)
+    print("DEBUG:")
+    print(request)
     #intent = request['intent']
     if intent.name == 'testIntent':
         return response({}, response_plain_text("You successfully tested"
@@ -78,7 +80,7 @@ class Intent():
         return response({}, response_plain_text("The night is dark and full of terror"))
 
     def help(self):
-        return response({}, response_plain_text("Fine, what do you want?", True))
+        return response({}, response_plain_text("Fine, what do you want?", False))
 
     def hello(self):
         print("DEBUG: Hello request")
