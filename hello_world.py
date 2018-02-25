@@ -68,7 +68,7 @@ def on_intent(request, session):
     elif intent.name == 'hello':
         return intent.hello()
     else:
-        return response({}, response_ssml_text(ssml_rate_tag(ssml_pitch_tag("I am groot!"), "high"), "fast"))
+        return response({}, response_ssml_text(ssml_rate_tag("I am groot!"), "fast"))
 
 # We can't send a response back on a session end
 def on_session_ended(request, session):
