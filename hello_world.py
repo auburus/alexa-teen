@@ -16,36 +16,6 @@ def lambda_handler(event, context):
         print("BUG: request type wrong")
         print(event['request'])
 
-# ----- Messages ------
-LAUNCH = 'LaunchRequest'
-INTENT_TEST = 'testIntent'
-INTENT_STOP = 'AMAZON.StopIntent'
-INTENT_CANCEL = 'AMAZON.CancelIntent'
-INTENT_WEATHER = 'AMAZON.SearchAction<object@WeatherForecast>'
-INTENT_WEATHER_TEMP = 'AMAZON.SearchAction<object@WeatherForecast|temperature>'
-INTENT_WEATHER_COND = 'AMAZON.SearchAction<object@WeatherForecast|weatherCondition>'
-INTENT_HELP = 'AMAZON.HelpIntent'
-INTENT_HELLO = 'helloIntent'
-
-messages = {
-    LAUNCH: [
-        'kk, I\'m woke',
-        'Ugh, what?',
-        'I really hope you have a good reason to bother me',
-    ],
-    INTENT_STOP: [
-        'You\'re ruining my life',
-        'Duh!',
-        'You don\'t tell me what to do!',
-        'It\'s my life, I\'ll stop if I want to',
-    ],
-    INTENT_HELLO: [
-        ssml_pitch_tag('What\'s up?', 'high'),
-        ssml_pitch_tag('Hey', 'low'),
-        ssml_rate_tag('What the ' +ssml_explitive_tag('fuck ') +'do you want now?', 'fast'),
-    ],
-}
-
 
 # ----- Response handlers -----
 
@@ -158,6 +128,36 @@ class Intent():
     def hello(self):
         return response({}, rand_response_ssml_text(INTENT_HELLO))
 
+
+# ----- Messages ------
+LAUNCH = 'LaunchRequest'
+INTENT_TEST = 'testIntent'
+INTENT_STOP = 'AMAZON.StopIntent'
+INTENT_CANCEL = 'AMAZON.CancelIntent'
+INTENT_WEATHER = 'AMAZON.SearchAction<object@WeatherForecast>'
+INTENT_WEATHER_TEMP = 'AMAZON.SearchAction<object@WeatherForecast|temperature>'
+INTENT_WEATHER_COND = 'AMAZON.SearchAction<object@WeatherForecast|weatherCondition>'
+INTENT_HELP = 'AMAZON.HelpIntent'
+INTENT_HELLO = 'helloIntent'
+
+messages = {
+    LAUNCH: [
+        'kk, I\'m woke',
+        'Ugh, what?',
+        'I really hope you have a good reason to bother me',
+    ],
+    INTENT_STOP: [
+        'You\'re ruining my life',
+        'Duh!',
+        'You don\'t tell me what to do!',
+        'It\'s my life, I\'ll stop if I want to',
+    ],
+    INTENT_HELLO: [
+        ssml_pitch_tag('What\'s up?', 'high'),
+        ssml_pitch_tag('Hey', 'low'),
+        ssml_rate_tag('What the ' +ssml_explitive_tag('fuck ') +'do you want now?', 'fast'),
+    ],
+}
 
 # test
 if __name__ == "__main__":
