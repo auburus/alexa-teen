@@ -158,10 +158,10 @@ messages = {
         ssml_rate_tag('Bruh, what the ' +ssml_explitive_tag('fuck ') +'do you want now?', 'fast'),
     ],
     INTENT_WEATHER: [
-        ssml_rate_tag('As if you ' +ssml_rate_tag('really', 'slow') +' need to know that', 'fast'),
-       'Do I look like I '  +ssml_emphasis_tag('really know') + '  every ' +ssml_explitive_tag('fucking') +' thing?',
         ssml_whisper_tag('The night is dark and full of ' +ssml_explitive_tag('fucking') +' terrors'),
-
+        "It's really terrible where you are standing",
+        "T. B. H. it's Goat",
+        "Hundo P. it's goat",
     ],
     INTENT_HELP: [
         ssml_pitch_tag('Ugh, fine', 'low'),
@@ -170,6 +170,8 @@ messages = {
     INTENT_DEFAULT: [
         ssml_emphasis_tag('GOD') +', can you at least try to say something meaningful?',
         'I\'m weak. ' +ssml_rate_tag("Say it with me: ", 'fast') + ssml_rate_tag("pronunciation", "slow"),
+        ssml_rate_tag('As if you ' +ssml_rate_tag('really', 'slow') +' need to know that', 'fast'),
+       'Do I look like I '  +ssml_emphasis_tag('really know') + '  every ' +ssml_explitive_tag('fucking') +' thing?',
     ],
     INTENT_HOWAREYOU: [
         "I\'m lit",
