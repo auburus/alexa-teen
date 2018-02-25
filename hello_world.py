@@ -17,10 +17,13 @@ def on_launch(request, session):
     return response({}, response_plain_text("I'm launching"))
 
 def on_intent(request, session):
+    intent = Intent(request, session)
     intent = request['intent']
     if intent['name'] == 'testIntent':
         return response({}, response_plain_text("You successfully tested"
             + " the functionality!"))
+    elif intent.name == 'exit':
+        return exit_intent(request, session);
     else:
         return response({}, response_plain_text("This is an intent"))
 
@@ -43,3 +46,16 @@ def response(attributes, response_obj):
         'sessionAttributes': attributes,
         'response': response_obj
     }
+
+# Oh swag money, you're actually playing a cool song
+class Intent():
+    def __init__(self, request, session):
+        self.request = request
+        self.session = session
+
+    @property
+    def name(self):
+        return self.request['intent']['name']
+
+    def exit(self):
+        return response({}, response_plain_text("Oh, hasthag finally", True))
