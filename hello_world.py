@@ -39,7 +39,7 @@ def on_intent(request, session):
     elif intent.name == 'hello':
         return intent.hello()
     else:
-        return response({}, response_plain_text("Did you really woke me up for this?"))
+        return response({}, response_plain_text("I am groot!"))
 
 # We can't send a response back on a session end
 def on_session_ended(request, session):
