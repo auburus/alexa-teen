@@ -174,9 +174,9 @@ messages = {
        'Do I look like I '  +ssml_emphasis_tag('really know') + '  every ' +ssml_explitive_tag('fucking') +' thing?',
     ],
     INTENT_HOWAREYOU: [
-        "I\'m lit",
+        "Salty and lit",
         "Alive",
-        "Go away",
+        "Skurt you",
     ]
 
 }
