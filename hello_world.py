@@ -18,12 +18,12 @@ def on_launch(request, session):
 
 def on_intent(request, session):
     intent = Intent(request, session)
-    intent = request['intent']
-    if intent['name'] == 'testIntent':
+    #intent = request['intent']
+    if intent.name == 'testIntent':
         return response({}, response_plain_text("You successfully tested"
             + " the functionality!"))
     elif intent.name == 'exit':
-        return exit_intent(request, session);
+        return intent.exit()
     else:
         return response({}, response_plain_text("This is an intent"))
 
@@ -59,3 +59,66 @@ class Intent():
 
     def exit(self):
         return response({}, response_plain_text("Oh, hasthag finally", True))
+
+
+# test
+if __name__ == "__main__":
+    event = {
+        "version": "1.0",
+        "session": {
+            "new": True,
+            "sessionId": "amzn1.echo-api.session.[unique-value-here]",
+            "application": {
+                "applicationId": "amzn1.ask.skill.[unique-value-here]"
+            },
+            "attributes": {
+                "key": "string value"
+            },
+            "user": {
+                "userId": "amzn1.ask.account.[unique-value-here]",
+                "accessToken": "Atza|AAAAAAAA...",
+                "permissions": {
+                    "consentToken": "ZZZZZZZ..."
+                    }
+            }
+        },
+        "context": {},
+        "request": {
+            "type": "IntentRequest",
+            "requestId": "string",
+            "timestamp": "string",
+            "dialogState": "string",
+            "locale": "string",
+            "intent": {
+                "name": "exit",
+                "confirmationStatus": "string",
+                "slots": {
+                    "SlotName": {
+                        "name": "string",
+                        "value": "string",
+                        "confirmationStatus": "string",
+                        "resolutions": {
+                            "resolutionsPerAuthority": [
+                                {
+                                    "authority": "string",
+                                    "status": {
+                                        "code": "string"
+                                    },
+                                    "values": [
+                                        {
+                                            "value": {
+                                                "name": "string",
+                                                "id": "string"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    print(lambda_handler(event, {}))
