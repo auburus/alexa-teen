@@ -114,7 +114,7 @@ class Intent():
 
 
     def stop(self):
-        return response({}, rand_response_plain_text(INTENT_STOP, True))
+        return response({}, rand_response_ssml_text(INTENT_STOP, True))
 
     def cancel(self):
         return self.stop()
@@ -147,10 +147,10 @@ messages = {
         'I really hope you have a good reason to bother me',
     ],
     INTENT_STOP: [
-        'You\'re ruining my life',
-        'Duh!',
-        'You don\'t tell me what to do!',
-        'It\'s my life, I\'ll stop if I want to',
+        ssml_emphasis_tag('You\'re ruining my life'),
+        ssml_rate_tag(ssml_pitch_tag('Duhhhhh!', 'low'), 'slow'),
+        'You don\'t tell ' +ssml_emphasis_tag('me') +' what to do!',
+        ssml_emphasis_tag('It\'s my life, ') +ssml_rate_tag(' I\'ll stop if I want to', 'slow'),
     ],
     INTENT_HELLO: [
         ssml_pitch_tag('What\'s up?', 'high'),
