@@ -27,16 +27,7 @@ def on_intent(request, session):
     print("Intent received")
     intent = Intent(request, session)
 
-    if intent.name == 'testIntent':
-        return response({}, 
-            response_ssml_text("You " +ssml_emphasis_tag("successfully") 
-                + ssml_explitive_tag("tested") + " the " + ssml_whisper_tag("functionality!")
-                + ssml_pitch_tag(" this is a low pitch ", "low")
-                + ssml_rate_tag(" now I'm talking soooo slow ", "slow")
-            )
-        )
-
-    elif intent.name == INTENT_STOP:
+    if intent.name == INTENT_STOP:
         return intent.stop()
     elif intent.name == INTENT_CANCEL:
         return intent.cancel()
@@ -124,7 +115,7 @@ class Intent():
         return response({}, rand_response_ssml_text(INTENT_WEATHER))
 
     def help(self):
-        return response({}, response_ssml_text(ssml_emphasis_tag("Fine") +",    " +ssml_pitch_tag("what do you want?", "low")))
+        return response({}, rand_response_ssml_text(INTENT_HELP))
 
     def hello(self):
         return response({}, rand_response_ssml_text(INTENT_HELLO))
